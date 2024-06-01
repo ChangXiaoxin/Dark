@@ -9,3 +9,5 @@
 #else
     #error Dark only supports Windows!
 #endif // DK_PLATFORM_WINDOWS
+
+#define BIT(x) (1 << x)
