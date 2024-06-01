@@ -1,7 +1,5 @@
 #pragma once
 
-#include <memory>
-
 #include "Core.h"
 //#include "Dark/Events/Event.h"
 #include "spdlog/spdlog.h"

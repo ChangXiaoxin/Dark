@@ -2,9 +2,6 @@
 
 #include "Dark/Core.h"
 
-#include <string>
-#include <functional>
-
 namespace Dark {
 
 	// Events in Dark are currently blocking, meaning when an event occurs it
