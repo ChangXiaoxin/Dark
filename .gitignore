@@ -1,7 +1,15 @@
 # Directories
 .vs/
+.vscode/
 bin/
 bin-int/
 
+!Vendor/premake/bin
+
 # Files
 *.user
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user
+**.csproj
