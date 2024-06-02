@@ -3,6 +3,7 @@
 // For use by Dark applications.
 
 #include "Dark/Application.h"
+#include "Dark/Layer.h"
 #include "Dark/Log.h"
 
 // ------------EntryPoint------------------
