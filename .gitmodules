@@ -1,3 +1,6 @@
 [submodule "Dark/vendor/spdlog"]
 	path = Dark/vendor/spdlog
-	url = git@github.com:gabime/spdlog
+	url = git@github.com:changxiaoxin/spdlog
+[submodule "Dark/vendor/GLFW"]
+	path = Dark/vendor/GLFW
+	url = git@github.com:changxiaoxin/glfw
