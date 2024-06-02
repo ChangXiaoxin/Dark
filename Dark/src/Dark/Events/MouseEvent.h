@@ -88,7 +88,7 @@ namespace Dark {
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
 
-	class DARK_API MouseButtonReleasedEvent : MouseButtonEvent
+	class DARK_API MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonReleasedEvent(int button)

@@ -41,7 +41,7 @@ namespace Dark {
 		int m_RepeatCount;
 	};
 
-	class DARK_API KeyReleasedEvent : KeyEvent
+	class DARK_API KeyReleasedEvent : public KeyEvent
 	{
 	public:
 		KeyReleasedEvent(int keyCode)
