@@ -10,6 +10,12 @@ workspace "Dark"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder.
+IncludeDir = {}
+IncludeDir["GLFW"] = "Dark/vendor/GLFW/include"
+
+include "Dark/vendor/GLFW"
+
 project "Dark"
     location "Dark"
     kind "SharedLib"
@@ -30,11 +36,18 @@ project "Dark"
     includedirs
     {
         "%{prj.name}/vendor/spdlog/include",
-        "Dark/src"
+        "%{prj.name}/src",
+        "%{IncludeDir.GLFW}"
+    }
+
+    links
+    {
+        "GLFW",
+        "opengl32.lib"
     }
 
     filter "system:windows"
-        cppdialect "C++17"
+        cppdialect "C++20"
         staticruntime "On"
         systemversion "latest"
 
@@ -87,7 +100,7 @@ project "Sandbox"
     }
 
     filter "system:windows"
-        cppdialect "C++17"
+        cppdialect "C++20"
         staticruntime "On"
         systemversion "latest"
 

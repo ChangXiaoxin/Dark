@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Core.h"
-//#include "Dark/Events/Event.h"
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h"
+
 
 namespace Dark {
 
@@ -23,14 +23,6 @@ namespace Dark {
     };
 
 }
-
-/*
-template<typename OStream>
-inline OStream& operator<<(OStream& os, const Dark::Event& e)
-{
-    return os << e.ToString();
-}
-*/
 
 // Core log macros.
 #define DK_CORE_TRACE(...) ::Dark::Log::GetCoreLogger()->trace(__VA_ARGS__)

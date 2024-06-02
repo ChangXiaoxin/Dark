@@ -1,6 +1,8 @@
 #pragma once
 
+#include "dkpch.h"
 #include "Dark/Core.h"
+#include "Dark/Log.h"
 
 namespace Dark {
 
@@ -74,9 +76,12 @@ namespace Dark {
 	private:
 		Event& m_Event;
 	};
-
-	inline std::ostream& operator<<(std::ostream& os, const Event& e)
-	{
-		return os << e.ToString();
-	}
 };
+
+// override operator<< for Dark::Event, make it easier to log.
+template<typename OStream>
+inline OStream& operator<<(OStream& os, const Dark::Event& e)
+{
+	return os << e.ToString();
+}
+template <> struct fmt::formatter<Dark::Event> : fmt::ostream_formatter {};
