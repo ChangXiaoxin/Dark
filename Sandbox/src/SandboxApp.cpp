@@ -1,6 +1,5 @@
 #include "Dark.h"
 
-
 class DemoLayer : public Dark::Layer
 {
 public:
@@ -11,12 +10,22 @@ public:
 
 	void OnUpdate() override
 	{
-		DK_INFO("Demo Layer: Update");
+		//DK_INFO("Demo Layer: Update");
+
+		if (Dark::Input::IsKeyPressed(DK_KEY_TAB))
+		{
+			DK_TRACE("Tab key is pressed!");
+		}
 	}
 
 	void OnEvent(Dark::Event& event) override
 	{
-		DK_TRACE("{0}", event);
+		//DK_TRACE("{0}", event);
+		if (event.GetEventType() == Dark::EventType::KeyPressed)
+		{
+			Dark::KeyPressedEvent& e = (Dark::KeyPressedEvent&)event;
+			DK_TRACE("{0}", (char)e.GetKeyCode());
+		}
 	}
 };
 
@@ -28,6 +37,7 @@ public:
 	Sandbox()
 	{
 		PushLayer(new DemoLayer());
+		PushOverlay(new Dark::ImGuiLayer());
 	}
 
 	~Sandbox()

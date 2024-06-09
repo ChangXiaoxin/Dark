@@ -4,10 +4,10 @@
 
 namespace Dark {
 
-	class DARK_API MouseMoveEvent : public Event
+	class DARK_API MouseMovedEvent : public Event
 	{
 	public:
-		MouseMoveEvent(float x, float y)
+		MouseMovedEvent(float x, float y)
 			: m_MouseX(x), m_MouseY(y)
 		{
 		}
@@ -18,7 +18,7 @@ namespace Dark {
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseMoveEvent: " << m_MouseX << ", " << m_MouseY;
+			ss << "MouseMovedEvent: " << m_MouseX << ", " << m_MouseY;
 			return ss.str();
 		}
 

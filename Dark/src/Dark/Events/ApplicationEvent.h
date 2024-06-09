@@ -4,10 +4,10 @@
 
 namespace Dark {
 
-	class DARK_API WindowResizeEvent : public Event
+	class DARK_API WindowResizedEvent : public Event
 	{
 	public:
-		WindowResizeEvent(unsigned int width, unsigned int height)
+		WindowResizedEvent(unsigned int width, unsigned int height)
 			: m_Width(width), m_Height(height)
 		{
 		}
@@ -17,7 +17,7 @@ namespace Dark {
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "WindowResizeEvent: " << m_Width << ", " << m_Height;
+			ss << "WindowResizedEvent: " << m_Width << ", " << m_Height;
 			return ss.str();
 		}
 
