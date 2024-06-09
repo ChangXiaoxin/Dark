@@ -13,8 +13,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder.
 IncludeDir = {}
 IncludeDir["GLFW"] = "Dark/vendor/GLFW/include"
+IncludeDir["Glad"] = "Dark/vendor/Glad/include"
+IncludeDir["ImGui"] = "Dark/vendor/imgui"
 
 include "Dark/vendor/GLFW"
+include "Dark/vendor/Glad"
+include "Dark/vendor/imgui"
 
 project "Dark"
     location "Dark"
@@ -37,12 +41,16 @@ project "Dark"
     {
         "%{prj.name}/vendor/spdlog/include",
         "%{prj.name}/src",
-        "%{IncludeDir.GLFW}"
+        "%{IncludeDir.GLFW}",
+        "%{IncludeDir.Glad}",
+        "%{IncludeDir.ImGui}"
     }
 
     links
     {
         "GLFW",
+        "Glad",
+        "ImGui",
         "opengl32.lib"
     }
 
@@ -54,7 +62,8 @@ project "Dark"
         defines
         {
             "DK_PLATFORM_WINDOWS",
-            "DK_BUILD_DLL"
+            "DK_BUILD_DLL",
+            "GLFW_INCLUDE_NONE"
         }
 
         postbuildcommands

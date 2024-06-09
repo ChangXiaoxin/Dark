@@ -1,10 +1,11 @@
 #include "dkpch.h"
 #include "WindowsWindow.h"
+
 #include "Dark/Events/ApplicationEvent.h"
 #include "Dark/Events/MouseEvent.h"
 #include "Dark/Events/KeyEvent.h"
 
-#include "Dark/Log.h"
+#include <glad/glad.h>
 
 namespace Dark {
 
@@ -41,13 +42,17 @@ namespace Dark {
 		if (!s_GLFWInitialized)
 		{
 			int success = glfwInit();
-			DK_CORE_ASSERT(success, "Couldn't initialize GLFW!");
+			DK_CORE_ASSERT(success, "Failed to initialize GLFW!");
 			glfwSetErrorCallback(GLFWErrorCallback);
 			s_GLFWInitialized = true;
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		DK_CORE_ASSERT(status, "Failed to initialize Glad!" );
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -57,7 +62,7 @@ namespace Dark {
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 				data.Width = width;
 				data.Height = height;
-				WindowResizeEvent event(width, height);
+				WindowResizedEvent event(width, height);
 				data.EventCallback(event);
 			});
 
@@ -94,6 +99,13 @@ namespace Dark {
 				}
 			});
 
+		glfwSetCharCallback(m_Window,[](GLFWwindow* window, unsigned int keycode)
+			{
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+				KeyTypedEvent event(keycode);
+				data.EventCallback(event);
+			});
+
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
@@ -124,7 +136,7 @@ namespace Dark {
 		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xPos, double yPos)
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-				MouseMoveEvent event((float)xPos, (float)yPos);
+				MouseMovedEvent event((float)xPos, (float)yPos);
 				data.EventCallback(event);
 
 			});
