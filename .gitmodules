@@ -4,3 +4,6 @@
 [submodule "Dark/vendor/GLFW"]
 	path = Dark/vendor/GLFW
 	url = git@github.com:changxiaoxin/glfw
+[submodule "Dark/vendor/imgui"]
+	path = Dark/vendor/imgui
+	url = git@github.com:ChangXiaoxin/imgui
