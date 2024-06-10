@@ -2,6 +2,7 @@
 #include "WindowsWindow.h"
 
 #include "Dark/Events/ApplicationEvent.h"
+#include "Dark/Events/GamepadEvent.h"
 #include "Dark/Events/MouseEvent.h"
 #include "Dark/Events/KeyEvent.h"
 
@@ -71,6 +72,23 @@ namespace Dark {
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 				WindowCloseEvent event;
 				data.EventCallback(event);
+			});
+
+		glfwSetJoystickCallback([](int jid, int event)
+			{
+				switch (event)
+				{
+				    case GLFW_CONNECTED:
+				    {
+						GamepadConnectedEvent event(jid);
+						break;
+				    }
+					case GLFW_DISCONNECTED:
+					{
+						GamepadDisconnectedEvent event(jid);
+						break;
+					}
+				}
 			});
 
 		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)

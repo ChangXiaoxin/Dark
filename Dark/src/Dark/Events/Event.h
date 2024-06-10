@@ -16,7 +16,8 @@ namespace Dark {
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
 		AppTick, AppUpdate, AppRender,
 		KeyPressed, KeyReleased, KeyTyped,
-		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
+		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled,
+		GamepadConnected, GamepadDisconnected
 	};
 
 	enum EventCategory
@@ -26,7 +27,8 @@ namespace Dark {
 		EventCategoryInput       = BIT(1),
 		EventCategoryKeyboard    = BIT(2),
 		EventCategoryMouse       = BIT(3),
-		EventCategoryMouseButton = BIT(4)
+		EventCategoryMouseButton = BIT(4),
+		EventCategoryGamepad     = BIT(5)
 
 	};
 
